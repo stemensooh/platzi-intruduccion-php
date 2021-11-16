@@ -1,0 +1,10 @@
+RewriteEngine On
+
+#verifica si es un archivo
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#verifica si es un directorio
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?route=$1
+
