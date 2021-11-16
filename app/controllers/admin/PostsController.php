@@ -2,18 +2,20 @@
 
 namespace App\Controllers\Admin;
 
-class PostsController {
+use App\Controllers\BaseController;
+
+class PostsController extends BaseController{
     public function getIndex(){
         global $pdo;
         $query = $pdo->prepare("SELECT * FROM blog_posts ORDER BY id DESC");
         $query->execute();
         $blogPosts = $query->fetchAll(\PDO::FETCH_ASSOC);
-        return render('../Views/admin/posts.php', ['blogPosts'=>$blogPosts]);
+        return $this->render('admin/posts.twig', ['blogPosts'=>$blogPosts]);
     }
 
     public function getCreate(){
         $result = false;
-        return render('../Views/admin/insert-post.php', ['result'=>$result]);
+        return $this->render('admin/insert-post.twig', ['result'=>$result]);
     }
 
     public function postCreate(){
@@ -27,6 +29,6 @@ class PostsController {
             'image' => 'images/example.jpg' ,
         ]);
 
-        return render('../Views/admin/insert-post.php', ['result'=>$result]);
+        return $this->render('admin/insert-post.twig', ['result'=>$result]);
     }
 }

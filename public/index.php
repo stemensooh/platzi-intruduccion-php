@@ -13,13 +13,14 @@ define('BASE_URL', $baseUrl);
 
 $route = empty($_GET['route']) ? '/' : $_GET['route'];
 
+/*
 function render($fileName, $params = []){
     ob_start();
     extract($params);
     include $fileName;
     return ob_get_clean();
 }
-
+*/
 use Phroute\Phroute\RouteCollector;
 //use App\Controllers;
 
