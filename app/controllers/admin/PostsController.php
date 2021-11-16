@@ -3,13 +3,11 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\BlogPost;
 
 class PostsController extends BaseController{
     public function getIndex(){
-        global $pdo;
-        $query = $pdo->prepare("SELECT * FROM blog_posts ORDER BY id DESC");
-        $query->execute();
-        $blogPosts = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $blogPosts = BlogPost::all();
         return $this->render('admin/posts.twig', ['blogPosts'=>$blogPosts]);
     }
 
@@ -19,15 +17,12 @@ class PostsController extends BaseController{
     }
 
     public function postCreate(){
-        global $pdo;
-        $sql = 'INSERT INTO blog_posts(title, content, date, image) VALUES(:title, :content, :date, :image)';
-        $query = $pdo->prepare($sql);
-        $result = $query->execute([
+        $blogPosts = new BlogPost([
             'title' => $_POST['title'],
             'content' => $_POST['content'],
-            'date' => date("Y/m/d h:i:sa"),
-            'image' => 'images/example.jpg' ,
+            'image' => 'images/example.jpg',
         ]);
+        $result = $blogPosts->save();
 
         return $this->render('admin/insert-post.twig', ['result'=>$result]);
     }
