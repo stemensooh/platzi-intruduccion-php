@@ -18,7 +18,6 @@ $capsule = new Capsule;
 $dotenv = \Dotenv\Dotenv::createImmutable( $dir = __DIR__ . '/..' );
 $dotenv->safeLoad();
 
-
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => $_ENV['DB_HOST'],
