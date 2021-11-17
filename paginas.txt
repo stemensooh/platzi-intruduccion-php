@@ -1,0 +1,5 @@
+https://www.php-fig.org/
+https://www.php-fig.org/psr/psr-4/
+https://getcomposer.org/
+https://packagist.org/
+https://twig.symfony.com/doc/3.x/
