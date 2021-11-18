@@ -17,14 +17,15 @@ class PostsController extends BaseController{
         return $this->render('admin/insert-post.twig', ['result'=>$result]);
     }
 
-    public function postCreate(){
+    public function postCreate() {
+
         $errors = [];
         $result = false;
         $validator = new Validator();
         $validator->add('title', 'required');
         $validator->add('content', 'required');
 
-        if($validator->validate($_POST)){
+        if ($validator->validate($_POST)) {
             $blogPosts = new BlogPost([
                 'title' => $_POST['title'],
                 'content' => $_POST['content'],
@@ -33,7 +34,7 @@ class PostsController extends BaseController{
             $result = $blogPosts->save();
         } else {
            $errors = $validator->getMessages();
-           print_r($errors);
+           //print_r($errors);
         }
 
         return $this->render('admin/insert-post.twig', [
