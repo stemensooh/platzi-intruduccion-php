@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
-
+session_start();
 
 $baseDir = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']) ;
 $baseUrl = 'http://'.$_SERVER['HTTP_HOST'] . $baseDir;
@@ -43,6 +43,7 @@ $router->controller('/', App\Controllers\IndexController::class);
 $router->controller('/admin', App\Controllers\Admin\IndexController::class);
 $router->controller('/admin/posts', App\Controllers\Admin\PostsController::class);
 $router->controller('/admin/users', App\Controllers\Admin\UserController::class);
+$router->controller('/auth', App\Controllers\AuthController::class);
 
 
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
