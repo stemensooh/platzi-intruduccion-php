@@ -22,10 +22,11 @@ class AuthController extends BaseController {
         if ($validator->validate($_POST)) {
             $user = User::query()->where('email', $_POST['email'])->first();
             if ($user) {
+                /*
                 echo $_POST['password'];
                 echo "<br>";
-                echo $user->password;
-
+                echo $user-> password;
+                */
                 if (password_verify($_POST['password'], $user->password)) {
                     $_SESSION['userId'] = $user->id;
                     header('Location:' . BASE_URL. 'admin');
@@ -42,5 +43,10 @@ class AuthController extends BaseController {
 
         $errors = $validator->getMessages();
         return $this->render('login.twig', ['errors' =>$errors]);
+    }
+
+    public function getLogout(){
+        unset($_SESSION['userId']);
+        header('Location:' . BASE_URL . 'auth/login');
     }
 }
