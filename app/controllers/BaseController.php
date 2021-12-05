@@ -16,8 +16,13 @@ class BaseController {
         ]);
 
         $this->templateEngine->addFilter(new \Twig\TwigFilter('url', function ($path){
-            return BASE_URL. $path;
+            if(!str_contains($path, 'http')){
+                return BASE_URL. $path;
+            }else{
+                return $path;
+            }
         }));
+
     }
 
     public function render($fileName, $data = []){

@@ -4,24 +4,26 @@
     <h2>New Post</h2>
     <a class="btn btn-warning" href="{{ 'admin/posts' | url }}">Back</a>
 
-    <form action="{{ 'admin/posts/create' | url }}" method="post" enctype="multipart/form-data">
+    <form action="{{ 'admin/posts/update' | url }}" method="post" enctype="multipart/form-data">
         {% include('partials/errors.twig') %}
-
+        <input type="hidden" name="id" value="{{ post.id }}">
 
         {% if result %}
             <div class="alert alert-success">Success!!</div>
         {% endif %}
         <div class="form-group">
             <label for="image">Title</label>
-            <input class="form-control" type="text" name="image" id="image">
+            <input class="form-control" type="text" name="image" id="image" value="{{ post.image }}">
         </div>
         <div class="form-group">
             <label for="inputTitle">Title</label>
-            <input class="form-control" type="text" name="title" id="inputTitle">
+            <input class="form-control" type="text" name="title" id="inputTitle" value="{{ post.title }}">
         </div>
         <div class="form-group">
             <label for="inputContent">Content</label>
-            <textarea class="form-control" name="content" id="inputContent" rows="5"></textarea>
+            <textarea class="form-control" name="content" id="inputContent" rows="5">
+                {{ post.content }}
+            </textarea>
         </div>
         <div class="form-group">
             <input class="btn btn-success" type="submit" value="Save">

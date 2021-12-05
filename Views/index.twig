@@ -3,11 +3,15 @@
 {% block content %}
     {% for blog in blogPosts %}
         <div class="blog-post">
-            <h2>{{ blog.title }}</h2>
+            <h2><a href="{{ 'post/' | url }}{{ blog.id }}">{{ blog.title }}</a></h2>
             <p>Jan 1, 2020 by <a href="">bolivar</a></p>
-            <div class="blog-post-image">
-                <img src="{{ blog.image }}" alt="">
-            </div>
+            
+            {% if blog.image %}
+                <div class="blog-post-image">
+                    <img src="{{ blog.image | url }}" alt="">
+                </div>
+            {% endif %}
+
             <div class="blog-post-content">
                 {{ blog.content }}
             </div>

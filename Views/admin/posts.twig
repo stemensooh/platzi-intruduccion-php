@@ -16,8 +16,8 @@
         {% for blog in  blogPosts%}
             <tr>
                 <td>{{ blog.title }}</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td><a href="{{ 'admin/posts/update' | url }}/{{ blog.id }}">Edit</a></td>
+                <td><a href="{{ 'admin/posts/delete' | url }}/{{ blog.id }}">Delete</a></td>
             </tr>
         {% endfor %}
 

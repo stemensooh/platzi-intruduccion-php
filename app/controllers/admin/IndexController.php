@@ -9,7 +9,7 @@ class IndexController extends BaseController {
     public function getIndex(){
 
         if(isset($_SESSION['userId'])){
-            print_r($_SESSION['userId']);
+            //print_r($_SESSION['userId']);
             $userId = $_SESSION['userId'];
             $user = User::query()->find($userId);
             if($user){
